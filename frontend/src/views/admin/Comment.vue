@@ -200,6 +200,7 @@ const comments = ref([])
 const loading = ref(true)
 const showDeleteDialog = ref(false)
 const deleteTargetId = ref(null)
+const targetComment = ref(null)
 const currentPage = ref(1)
   const pageSize = ref(3)
 
