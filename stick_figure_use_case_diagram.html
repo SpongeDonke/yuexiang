@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沧州O2O洗护服务平台 - 火柴人用例图</title>
+    <style>
+        body {
+            font-family: "SimSun", serif;
+            font-size: 14pt;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .diagram-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+        .use-case-ellipse {
+            fill: white;
+            stroke: black;
+            stroke-width: 2;
+        }
+        .use-case-text {
+            font-size: 14px;
+            text-anchor: middle;
+            font-family: "SimSun", serif;
+        }
+        .actor-label {
+            font-size: 16px;
+            font-weight: bold;
+            text-anchor: middle;
+            font-family: "SimSun", serif;
+        }
+        .system-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-anchor: middle;
+            font-family: "SimSun", serif;
+        }
+        .association-line {
+            stroke: black;
+            stroke-width: 2;
+        }
+        .include-line {
+            stroke: black;
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+        }
+        .extend-line {
+            stroke: black;
+            stroke-width: 2;
+            stroke-dasharray: 10,5;
+        }
+        .diagram-caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>沧州O2O洗护服务平台 - 系统用例图</h1>
+    
+    <div class="diagram-container">
+        <svg width="1200" height="900" viewBox="0 0 1200 900">
+            
+            <!-- 系统边界 -->
+            <rect x="280" y="80" width="640" height="740" fill="white" stroke="black" stroke-width="3" rx="10" />
+            <text x="600" y="120" class="system-title">沧州O2O洗护服务平台</text>
+            
+            <!-- 顾客角色 (火柴人) -->
+            <g transform="translate(120, 200)">
+                <!-- 头部 -->
+                <circle cx="0" cy="0" r="25" fill="white" stroke="black" stroke-width="3"/>
+                <!-- 眼睛 -->
+                <circle cx="-8" cy="-5" r="3" fill="black"/>
+                <circle cx="8" cy="-5" r="3" fill="black"/>
+                <!-- 嘴巴 -->
+                <path d="M -8 8 Q 0 15 8 8" fill="none" stroke="black" stroke-width="2"/>
+                <!-- 身体 -->
+                <line x1="0" y1="25" x2="0" y2="85" stroke="black" stroke-width="3"/>
+                <!-- 左臂 -->
+                <line x1="0" y1="40" x2="-30" y2="65" stroke="black" stroke-width="3"/>
+                <!-- 右臂 -->
+                <line x1="0" y1="40" x2="30" y2="65" stroke="black" stroke-width="3"/>
+                <!-- 左腿 -->
+                <line x1="0" y1="85" x2="-20" y2="130" stroke="black" stroke-width="3"/>
+                <!-- 右腿 -->
+                <line x1="0" y1="85" x2="20" y2="130" stroke="black" stroke-width="3"/>
+            </g>
+            <text x="120" y="370" class="actor-label">顾客</text>
+            
+            <!-- 商家角色 (火柴人) -->
+            <g transform="translate(1080, 450)">
+                <!-- 头部 -->
+                <circle cx="0" cy="0" r="25" fill="white" stroke="black" stroke-width="3"/>
+                <!-- 眼睛 -->
+                <circle cx="-8" cy="-5" r="3" fill="black"/>
+                <circle cx="8" cy="-5" r="3" fill="black"/>
+                <!-- 眼睛上方的眉毛 -->
+                <line x1="-15" y1="-12" x2="-3" y2="-10" stroke="black" stroke-width="2"/>
+                <line x1="15" y1="-12" x2="3" y2="-10" stroke="black" stroke-width="2"/>
+                <!-- 嘴巴 -->
+                <path d="M -8 8 Q 0 12 8 8" fill="none" stroke="black" stroke-width="2"/>
+                <!-- 身体 -->
+                <line x1="0" y1="25" x2="0" y2="85" stroke="black" stroke-width="3"/>
+                <!-- 左臂 -->
+                <line x1="0" y1="40" x2="-30" y2="65" stroke="black" stroke-width="3"/>
+                <!-- 右臂 - 拿着东西 -->
+                <line x1="0" y1="40" x2="30" y2="60" stroke="black" stroke-width="3"/>
+                <rect x="28" y="55" width="15" height="20" fill="white" stroke="black" stroke-width="2"/>
+                <!-- 左腿 -->
+                <line x1="0" y1="85" x2="-20" y2="130" stroke="black" stroke-width="3"/>
+                <!-- 右腿 -->
+                <line x1="0" y1="85" x2="20" y2="130" stroke="black" stroke-width="3"/>
+            </g>
+            <text x="1080" y="620" class="actor-label">商家</text>
+            
+            <!-- 管理员角色 (火柴人) -->
+            <g transform="translate(120, 700)">
+                <!-- 头部 -->
+                <circle cx="0" cy="0" r="25" fill="white" stroke="black" stroke-width="3"/>
+                <!-- 眼镜 -->
+                <ellipse cx="-10" cy="-3" rx="8" ry="6" fill="none" stroke="black" stroke-width="2"/>
+                <ellipse cx="10" cy="-3" rx="8" ry="6" fill="none" stroke="black" stroke-width="2"/>
+                <line x1="-2" y1="-3" x2="2" y2="-3" stroke="black" stroke-width="2"/>
+                <!-- 眼睛 -->
+                <circle cx="-10" cy="-3" r="2" fill="black"/>
+                <circle cx="10" cy="-3" r="2" fill="black"/>
+                <!-- 嘴巴 -->
+                <path d="M -8 8 Q 0 15 8 8" fill="none" stroke="black" stroke-width="2"/>
+                <!-- 身体 -->
+                <line x1="0" y1="25" x2="0" y2="85" stroke="black" stroke-width="3"/>
+                <!-- 左臂 -->
+                <line x1="0" y1="40" x2="-30" y2="65" stroke="black" stroke-width="3"/>
+                <!-- 右臂 -->
+                <line x1="0" y1="40" x2="30" y2="65" stroke="black" stroke-width="3"/>
+                <!-- 左腿 -->
+                <line x1="0" y1="85" x2="-20" y2="130" stroke="black" stroke-width="3"/>
+                <!-- 右腿 -->
+                <line x1="0" y1="85" x2="20" y2="130" stroke="black" stroke-width="3"/>
+                <!-- 帽子 -->
+                <path d="M -20 -20 L -15 -35 L 15 -35 L 20 -20" fill="white" stroke="black" stroke-width="2"/>
+            </g>
+            <text x="120" y="870" class="actor-label">管理员</text>
+            
+            <!-- 顾客用例 -->
+            <ellipse cx="500" cy="180" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="500" y="185" class="use-case-text">用户登录</text>
+            
+            <ellipse cx="430" cy="240" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="430" y="245" class="use-case-text">浏览服务</text>
+            
+            <ellipse cx="500" cy="300" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="500" y="305" class="use-case-text">预约订单</text>
+            
+            <ellipse cx="430" cy="360" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="430" y="365" class="use-case-text">查看订单</text>
+            
+            <ellipse cx="500" cy="420" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="500" y="425" class="use-case-text">取消订单</text>
+            
+            <ellipse cx="430" cy="480" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="430" y="485" class="use-case-text">评价订单</text>
+            
+            <ellipse cx="500" cy="540" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="500" y="545" class="use-case-text">搜索订单</text>
+            
+            <!-- 商家用例 -->
+            <ellipse cx="770" cy="240" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="770" y="245" class="use-case-text">用户登录</text>
+            
+            <ellipse cx="700" cy="300" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="700" y="305" class="use-case-text">店铺管理</text>
+            
+            <ellipse cx="770" cy="360" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="770" y="365" class="use-case-text">服务管理</text>
+            
+            <ellipse cx="700" cy="420" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="700" y="425" class="use-case-text">查看订单</text>
+            
+            <ellipse cx="770" cy="480" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="770" y="485" class="use-case-text">更新订单状态</text>
+            
+            <ellipse cx="700" cy="540" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="700" y="545" class="use-case-text">回复评论</text>
+            
+            <ellipse cx="770" cy="600" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="770" y="605" class="use-case-text">搜索订单</text>
+            
+            <!-- 管理员用例 -->
+            <ellipse cx="600" cy="620" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="600" y="625" class="use-case-text">用户登录</text>
+            
+            <ellipse cx="530" cy="680" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="530" y="685" class="use-case-text">用户管理</text>
+            
+            <ellipse cx="670" cy="680" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="670" y="685" class="use-case-text">店铺审核</text>
+            
+            <ellipse cx="530" cy="740" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="530" y="745" class="use-case-text">服务管理</text>
+            
+            <ellipse cx="670" cy="740" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="670" y="745" class="use-case-text">删除评论</text>
+            
+            <ellipse cx="600" cy="800" rx="70" ry="30" class="use-case-ellipse"/>
+            <text x="600" y="805" class="use-case-text">系统配置</text>
+            
+            <!-- 顾客与用例的连接线 -->
+            <line x1="180" y1="200" x2="360" y2="180" class="association-line"/>
+            <line x1="180" y1="200" x2="360" y2="240" class="association-line"/>
+            <line x1="180" y1="200" x2="430" y2="300" class="association-line"/>
+            <line x1="180" y1="200" x2="360" y2="360" class="association-line"/>
+            <line x1="180" y1="200" x2="430" y2="420" class="association-line"/>
+            <line x1="180" y1="200" x2="360" y2="480" class="association-line"/>
+            <line x1="180" y1="200" x2="430" y2="540" class="association-line"/>
+            
+            <!-- 商家与用例的连接线 -->
+            <line x1="1020" y1="450" x2="840" y2="240" class="association-line"/>
+            <line x1="1020" y1="450" x2="770" y2="300" class="association-line"/>
+            <line x1="1020" y1="450" x2="840" y2="360" class="association-line"/>
+            <line x1="1020" y1="450" x2="770" y2="420" class="association-line"/>
+            <line x1="1020" y1="450" x2="840" y2="480" class="association-line"/>
+            <line x1="1020" y1="450" x2="770" y2="540" class="association-line"/>
+            <line x1="1020" y1="450" x2="840" y2="600" class="association-line"/>
+            
+            <!-- 管理员与用例的连接线 -->
+            <line x1="180" y1="700" x2="460" y2="620" class="association-line"/>
+            <line x1="180" y1="700" x2="460" y2="680" class="association-line"/>
+            <line x1="180" y1="700" x2="600" y2="680" class="association-line"/>
+            <line x1="180" y1="700" x2="460" y2="740" class="association-line"/>
+            <line x1="180" y1="700" x2="600" y2="740" class="association-line"/>
+            <line x1="180" y1="700" x2="530" y2="800" class="association-line"/>
+            
+        </svg>
+        
+        <p class="diagram-caption">图2-1 沧州O2O洗护服务平台系统用例图</p>
+    </div>
+    
+    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 30px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">角色说明</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #f0f0f0;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">角色</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">主要功能</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;"><strong>顾客</strong></td>
+                <td style="border: 1px solid #ddd; padding: 12px;">浏览洗护服务、预约订单、查看订单状态、取消订单、评价订单、搜索订单</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;"><strong>商家</strong></td>
+                <td style="border: 1px solid #ddd; padding: 12px;">店铺管理、服务管理、查看订单、更新订单状态、回复评论、搜索订单</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;"><strong>管理员</strong></td>
+                <td style="border: 1px solid #ddd; padding: 12px;">用户管理、店铺审核、服务管理、删除评论、系统配置</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
