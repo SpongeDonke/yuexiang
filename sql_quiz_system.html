@@ -1203,6 +1203,12 @@ ${question.example.input}
             document.querySelector('.test-run-button').addEventListener('click', function() {
                 const sql = document.getElementById('sql-editor').value;
                 if (sql) {
+                    // 基本SQL语法验证
+                    if (!validateSQL(sql)) {
+                        alert('SQL语法错误，请检查输入的SQL语句');
+                        return;
+                    }
+                    
                     // 根据当前题目生成模拟执行结果
                     const question = questions[currentQuestionIndex];
                     let result = 'SQL执行成功！\n\n执行结果：\n';
@@ -1324,10 +1330,46 @@ ${question.example.input}
                 }
             });
             
+            // SQL语法验证函数
+            function validateSQL(sql) {
+                // 基本的SQL语法验证
+                const trimmedSql = sql.trim();
+                
+                // 检查是否为空
+                if (!trimmedSql) {
+                    return false;
+                }
+                
+                // 检查是否以常见的SQL关键字开头
+                const validStartKeywords = [
+                    'SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'ALTER', 'SHOW', 'DESCRIBE'
+                ];
+                
+                const firstWord = trimmedSql.split(' ')[0].toUpperCase();
+                if (!validStartKeywords.includes(firstWord)) {
+                    return false;
+                }
+                
+                // 检查是否有基本的语法结构
+                if (firstWord === 'SELECT') {
+                    // 检查是否包含FROM关键字
+                    if (!trimmedSql.toUpperCase().includes('FROM')) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+            
             // 保存并提交按钮
             document.querySelector('.submit-button').addEventListener('click', function() {
                 const sql = document.getElementById('sql-editor').value;
                 if (sql) {
+                    // 基本SQL语法验证
+                    if (!validateSQL(sql)) {
+                        alert('SQL语法错误，请检查输入的SQL语句');
+                        return;
+                    }
                     alert('提交成功！\n\n您的SQL语句已保存并提交。');
                 } else {
                     alert('请输入SQL语句');
