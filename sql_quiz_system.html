@@ -709,9 +709,9 @@ INSERT INTO questions_pass_record VALUES(104, 'sql', 'pc', 20, '2019-05-15');
                 example: {
                     table: [
                         {emp_id: 1, emp_name: "张三", dept_id: 101},
-                        {emp_id: 2, emp_name: "李四", dept_id: NULL},
+                        {emp_id: 2, emp_name: "李四", dept_id: null},
                         {emp_id: 3, emp_name: "王五", dept_id: 102},
-                        {emp_id: 4, emp_name: "赵六", dept_id: NULL}
+                        {emp_id: 4, emp_name: "赵六", dept_id: null}
                     ],
                     input: "drop table if exists employees;\nCREATE TABLE `employees` (\n  `emp_id` int NOT NULL,\n  `emp_name` varchar(32) NOT NULL,\n  `dept_id` int\n);\nINSERT INTO employees VALUES(1, '张三', 101);\nINSERT INTO employees VALUES(2, '李四', NULL);\nINSERT INTO employees VALUES(3, '王五', 102);\nINSERT INTO employees VALUES(4, '赵六', NULL);"
                 }
