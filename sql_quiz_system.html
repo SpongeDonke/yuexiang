@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL基础进阶答题系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .question-nav {
+            margin: 0 20px;
+        }
+        
+        .question-nav button {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 4px;
+        }
+        
+        .question-nav button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .question-panel {
+            flex: 1;
+            background-color: #fff;
+            border-right: 1px solid #e0e0e0;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .question-header {
+            margin-bottom: 20px;
+        }
+        
+        .question-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .question-meta {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .question-meta span {
+            margin-right: 15px;
+        }
+        
+        .question-tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .question-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .question-tab.active {
+            border-bottom-color: #4CAF50;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .question-content {
+            margin-bottom: 20px;
+        }
+        
+        .question-section {
+            margin-bottom: 20px;
+        }
+        
+        .question-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .question-section p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .example-code {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        
+        .code-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #1e1e1e;
+        }
+        
+        .editor-header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .editor-header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .db-selector {
+            margin-left: 10px;
+            padding: 5px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+        
+        .sql-mode {
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        
+        .editor-header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-button {
+            background-color: transparent;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        .header-button:hover {
+            color: #fff;
+        }
+        
+        .code-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100%;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+        }
+        
+        textarea:focus {
+            outline: none;
+        }
+        
+        .editor-footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .footer-tabs {
+            display: flex;
+        }
+        
+        .footer-tab {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-right: 10px;
+        }
+        
+        .footer-tab.active {
+            border-bottom-color: #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .action-buttons {
+            display: flex;
+        }
+        
+        .action-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        .test-run-button {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        
+        .submit-button {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        
+        .test-run-button:hover {
+            background-color: #5a6268;
+        }
+        
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+        
+        .result-area {
+            flex: 1;
+            background-color: #f8f8f8;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <button class="header-button">题目列表</button>
+                <div class="question-nav">
+                    <button id="prev-question">上一题</button>
+                    <button id="next-question">下一题</button>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="question-panel">
+                <div class="question-header">
+                    <div class="question-title" id="question-title">SQL25 查询每天刷题通过数最多的前二名用户id和刷题数</div>
+                    <div class="question-meta">
+                        <span>中等</span>
+                        <span>通过率: 13.95%</span>
+                        <span>时间限制: 1秒</span>
+                        <span>空间限制: 256M</span>
+                    </div>
+                </div>
+                <div class="question-tabs">
+                    <div class="question-tab active">题目</div>
+                    <div class="question-tab">题解(40)</div>
+                    <div class="question-tab">讨论(60)</div>
+                    <div class="question-tab">排行</div>
+                </div>
+                <div class="question-content">
+                    <div class="question-section">
+                        <h3>描述</h3>
+                        <p>现有牛客刷题表questions_pass_record，请查询每天刷题通过数最多的前二名用户id和刷题数，输出按照日期升序排序，查询返回结果名称和顺序为</p>
+                        <p>date|user_id|pass_count</p>
+                    </div>
+                    <div class="question-section">
+                        <h3>示例</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>user_id</th>
+                                        <th>question_type</th>
+                                        <th>device</th>
+                                        <th>pass_count</th>
+                                        <th>date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>101</td>
+                                        <td>java</td>
+                                        <td>app</td>
+                                        <td>2</td>
+                                        <td>2020-03-01</td>
+                                    </tr>
+                                    <tr>
+                                        <td>102</td>
+                                        <td>sql</td>
+                                        <td>pc</td>
+                                        <td>15</td>
+                                        <td>2021-07-07</td>
+                                    </tr>
+                                    <tr>
+                                        <td>102</td>
+                                        <td>python</td>
+                                        <td>pc</td>
+                                        <td>9</td>
+                                        <td>2021-04-09</td>
+                                    </tr>
+                                    <tr>
+                                        <td>104</td>
+                                        <td>python</td>
+                                        <td>app</td>
+                                        <td>3</td>
+                                        <td>2022-03-17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>105</td>
+                                        <td>sql</td>
+                                        <td>pc</td>
+                                        <td>60</td>
+                                        <td>2018-08-15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>104</td>
+                                        <td>sql</td>
+                                        <td>pc</td>
+                                        <td>20</td>
+                                        <td>2019-05-15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3>示例1</h3>
+                        <div class="example-code">输入：
+drop table if exists questions_pass_record;
+CREATE TABLE `questions_pass_record` (
+  `user_id` int NOT NULL,
+  `question_type` varchar(32) NOT NULL,
+  `device` varchar(14) NOT NULL,
+  `pass_count` int NOT NULL,
+  `date` date NOT NULL
+);
+INSERT INTO questions_pass_record VALUES(101, 'java', 'app', 2, '2020-03-01');
+INSERT INTO questions_pass_record VALUES(102, 'sql', 'pc', 15, '2021-07-07');
+INSERT INTO questions_pass_record VALUES(102, 'python', 'pc', 9, '2021-04-09');
+INSERT INTO questions_pass_record VALUES(104, 'python', 'app', 3, '2022-03-17');
+INSERT INTO questions_pass_record VALUES(105, 'sql', 'pc', 60, '2018-08-15');
+INSERT INTO questions_pass_record VALUES(104, 'sql', 'pc', 20, '2019-05-15');
+</div>
+                    </div>
+                </div>
+            </div>
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-header-left">
+                        <span>1</span>
+                        <select class="db-selector">
+                            <option>MySQL</option>
+                            <option>PostgreSQL</option>
+                            <option>SQLite</option>
+                        </select>
+                        <span class="sql-mode">SQL编辑</span>
+                    </div>
+                    <div class="editor-header-right">
+                        <button class="header-button">保存</button>
+                        <button class="header-button">历史</button>
+                        <button class="header-button">重置</button>
+                        <button class="header-button">格式化</button>
+                        <button class="header-button">主题</button>
+                        <button class="header-button">设置</button>
+                        <button class="header-button">全屏</button>
+                    </div>
+                </div>
+                <div class="code-area">
+                    <textarea id="sql-editor" placeholder="请输入SQL语句..."></textarea>
+                </div>
+                <div class="editor-footer">
+                    <div class="footer-tabs">
+                        <div class="footer-tab active">执行结果</div>
+                        <div class="footer-tab">自测输入</div>
+                        <div class="footer-tab">提交记录</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-button test-run-button">自测运行</button>
+                        <button class="action-button submit-button">保存并提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 模拟题目数据
+        const questions = [
+            {
+                id: 1,
+                title: "SQL25 查询每天刷题通过数最多的前二名用户id和刷题数",
+                difficulty: "中等",
+                passRate: "13.95%",
+                timeLimit: "1秒",
+                spaceLimit: "256M",
+                description: "现有牛客刷题表questions_pass_record，请查询每天刷题通过数最多的前二名用户id和刷题数，输出按照日期升序排序，查询返回结果名称和顺序为date|user_id|pass_count",
+                example: {
+                    table: [
+                        {user_id: 101, question_type: "java", device: "app", pass_count: 2, date: "2020-03-01"},
+                        {user_id: 102, question_type: "sql", device: "pc", pass_count: 15, date: "2021-07-07"},
+                        {user_id: 102, question_type: "python", device: "pc", pass_count: 9, date: "2021-04-09"},
+                        {user_id: 104, question_type: "python", device: "app", pass_count: 3, date: "2022-03-17"},
+                        {user_id: 105, question_type: "sql", device: "pc", pass_count: 60, date: "2018-08-15"},
+                        {user_id: 104, question_type: "sql", device: "pc", pass_count: 20, date: "2019-05-15"}
+                    ],
+                    input: "drop table if exists questions_pass_record;\nCREATE TABLE `questions_pass_record` (\n  `user_id` int NOT NULL,\n  `question_type` varchar(32) NOT NULL,\n  `device` varchar(14) NOT NULL,\n  `pass_count` int NOT NULL,\n  `date` date NOT NULL\n);\nINSERT INTO questions_pass_record VALUES(101, 'java', 'app', 2, '2020-03-01');\nINSERT INTO questions_pass_record VALUES(102, 'sql', 'pc', 15, '2021-07-07');\nINSERT INTO questions_pass_record VALUES(102, 'python', 'pc', 9, '2021-04-09');\nINSERT INTO questions_pass_record VALUES(104, 'python', 'app', 3, '2022-03-17');\nINSERT INTO questions_pass_record VALUES(105, 'sql', 'pc', 60, '2018-08-15');\nINSERT INTO questions_pass_record VALUES(104, 'sql', 'pc', 20, '2019-05-15');"
+                }
+            },
+            {
+                id: 2,
+                title: "SQL26 查询用户的最近登录日期",
+                difficulty: "简单",
+                passRate: "25.67%",
+                timeLimit: "1秒",
+                spaceLimit: "256M",
+                description: "现有用户登录表user_login，请查询每个用户的最近登录日期，输出用户id和最近登录日期",
+                example: {
+                    table: [
+                        {user_id: 101, login_date: "2023-01-01"},
+                        {user_id: 101, login_date: "2023-01-02"},
+                        {user_id: 102, login_date: "2023-01-01"},
+                        {user_id: 102, login_date: "2023-01-03"},
+                        {user_id: 103, login_date: "2023-01-01"}
+                    ],
+                    input: "drop table if exists user_login;\nCREATE TABLE `user_login` (\n  `user_id` int NOT NULL,\n  `login_date` date NOT NULL\n);\nINSERT INTO user_login VALUES(101, '2023-01-01');\nINSERT INTO user_login VALUES(101, '2023-01-02');\nINSERT INTO user_login VALUES(102, '2023-01-01');\nINSERT INTO user_login VALUES(102, '2023-01-03');\nINSERT INTO user_login VALUES(103, '2023-01-01');"
+                }
+            }
+        ];
+        
+        let currentQuestionIndex = 0;
+        
+        // 初始化页面
+        function initPage() {
+            loadQuestion(currentQuestionIndex);
+            bindEvents();
+        }
+        
+        // 加载题目
+        function loadQuestion(index) {
+            const question = questions[index];
+            if (!question) return;
+            
+            document.getElementById('question-title').textContent = question.title;
+            
+            // 这里可以根据需要更新其他题目信息
+        }
+        
+        // 绑定事件
+        function bindEvents() {
+            // 上一题按钮
+            document.getElementById('prev-question').addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion(currentQuestionIndex);
+                }
+            });
+            
+            // 下一题按钮
+            document.getElementById('next-question').addEventListener('click', function() {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion(currentQuestionIndex);
+                }
+            });
+            
+            // 自测运行按钮
+            document.querySelector('.test-run-button').addEventListener('click', function() {
+                const sql = document.getElementById('sql-editor').value;
+                if (sql) {
+                    // 模拟执行结果
+                    alert('SQL执行成功！\n\n执行结果：\ndate|user_id|pass_count\n2018-08-15|105|60\n2019-05-15|104|20\n2020-03-01|101|2\n2021-04-09|102|9\n2021-07-07|102|15\n2022-03-17|104|3');
+                } else {
+                    alert('请输入SQL语句');
+                }
+            });
+            
+            // 保存并提交按钮
+            document.querySelector('.submit-button').addEventListener('click', function() {
+                const sql = document.getElementById('sql-editor').value;
+                if (sql) {
+                    alert('提交成功！\n\n您的SQL语句已保存并提交。');
+                } else {
+                    alert('请输入SQL语句');
+                }
+            });
+            
+            // 标签切换
+            const questionTabs = document.querySelectorAll('.question-tab');
+            questionTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    questionTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            const footerTabs = document.querySelectorAll('.footer-tab');
+            footerTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    footerTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        // 初始化页面
+        initPage();
+    </script>
+</body>
+</html>
