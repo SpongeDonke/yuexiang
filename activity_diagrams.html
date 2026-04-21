@@ -18,17 +18,17 @@
         }
         h2 {
             color: #333;
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin-top: 60px;
+            margin-bottom: 30px;
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
         }
         .diagram-container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         svg {
             display: block;
@@ -68,7 +68,7 @@
         }
         .diagram-caption {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 16px;
             font-weight: bold;
         }
@@ -80,75 +80,49 @@
     <!-- 1. 系统的登录与注册活动图 -->
     <h2>1. 系统的登录与注册活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="900" height="500" viewBox="0 0 900 500">
             <!-- 开始节点 -->
-            <circle cx="400" cy="50" r="20" class="start-circle"/>
-            <text x="400" y="54" class="text">开始</text>
+            <circle cx="450" cy="50" r="20" class="start-circle"/>
+            <text x="450" y="54" class="text">开始</text>
             
-            <!-- 选择操作 -->
-            <rect x="350" y="100" width="100" height="50" class="activity-rect"/>
-            <text x="400" y="130" class="text">选择操作</text>
+            <!-- 登录系统 -->
+            <rect x="400" y="100" width="100" height="50" class="activity-rect"/>
+            <text x="450" y="130" class="text">登录系统</text>
             
             <!-- 决策节点 -->
-            <polygon points="400,180 450,230 400,280 350,230" class="decision-diamond"/>
-            <text x="400" y="230" class="text">操作类型</text>
+            <polygon points="450,180 500,230 450,280 400,230" class="decision-diamond"/>
+            <text x="450" y="230" class="text">用户角色</text>
             
-            <!-- 登录流程 -->
-            <rect x="200" y="200" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="230" class="text">登录系统</text>
+            <!-- 顾客登录 -->
+            <rect x="300" y="200" width="120" height="50" class="activity-rect"/>
+            <text x="360" y="230" class="text">顾客登录</text>
             
-            <rect x="200" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="310" class="text">输入用户名密码</text>
+            <!-- 商家登录 -->
+            <rect x="520" y="200" width="120" height="50" class="activity-rect"/>
+            <text x="580" y="230" class="text">商家登录</text>
             
-            <polygon points="275,360 325,410 275,460 225,410" class="decision-diamond"/>
-            <text x="275" y="410" class="text">验证成功？</text>
-            
-            <rect x="200" y="480" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="510" class="text">登录失败</text>
-            
-            <!-- 注册流程 -->
-            <rect x="500" y="200" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="230" class="text">注册账号</text>
-            
-            <rect x="500" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="310" class="text">填写注册信息</text>
-            
-            <polygon points="575,360 625,410 575,460 525,410" class="decision-diamond"/>
-            <text x="575" y="410" class="text">注册成功？</text>
-            
-            <rect x="500" y="480" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="510" class="text">注册失败</text>
+            <!-- 管理员登录 -->
+            <rect x="420" y="300" width="120" height="50" class="activity-rect"/>
+            <text x="480" y="330" class="text">管理员登录</text>
             
             <!-- 结束节点 -->
-            <circle cx="400" cy="550" r="20" class="end-circle"/>
-            <text x="400" y="554" class="text">结束</text>
+            <circle cx="450" cy="400" r="20" class="end-circle"/>
+            <text x="450" y="404" class="text">结束</text>
             
             <!-- 箭头 -->
-            <path d="M400,70 L400,100" class="arrow"/>
-            <path d="M400,150 L400,180" class="arrow"/>
+            <path d="M450,70 L450,100" class="arrow"/>
+            <path d="M450,150 L450,180" class="arrow"/>
             
-            <path d="M400,200 L275,200" class="arrow"/>
-            <path d="M275,250 L275,280" class="arrow"/>
-            <path d="M275,330 L275,360" class="arrow"/>
-            <path d="M275,460 L275,480" class="arrow"/>
-            <path d="M275,530 L400,530" class="arrow"/>
-            
-            <path d="M400,200 L575,200" class="arrow"/>
-            <path d="M575,250 L575,280" class="arrow"/>
-            <path d="M575,330 L575,360" class="arrow"/>
-            <path d="M575,460 L575,480" class="arrow"/>
-            <path d="M575,530 L400,530" class="arrow"/>
-            
-            <path d="M325,410 L400,410 L400,530" class="arrow"/>
-            <path d="M625,410 L400,410" class="arrow"/>
+            <path d="M450,200 L360,200" class="arrow"/>
+            <path d="M450,200 L580,200" class="arrow"/>
+            <path d="M360,250 L480,250" class="arrow"/>
+            <path d="M580,250 L480,250" class="arrow"/>
+            <path d="M480,350 L450,350 L450,400" class="arrow"/>
             
             <!-- 标签 -->
-            <text x="300" y="215" class="text" font-size="12">登录</text>
-            <text x="550" y="215" class="text" font-size="12">注册</text>
-            <text x="250" y="385" class="text" font-size="12">否</text>
-            <text x="300" y="415" class="text" font-size="12">是</text>
-            <text x="550" y="385" class="text" font-size="12">否</text>
-            <text x="600" y="415" class="text" font-size="12">是</text>
+            <text x="400" y="215" class="text" font-size="12">顾客</text>
+            <text x="530" y="215" class="text" font-size="12">商家</text>
+            <text x="400" y="315" class="text" font-size="12">管理员</text>
         </svg>
         <p class="diagram-caption">图2-1 系统的登录与注册活动图</p>
     </div>
@@ -156,7 +130,7 @@
     <!-- 2. 店铺信息管理活动图 -->
     <h2>2. 店铺信息管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="800" height="500" viewBox="0 0 800 500">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -174,47 +148,36 @@
             <text x="400" y="310" class="text">操作类型</text>
             
             <!-- 查看店铺信息 -->
-            <rect x="200" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="310" class="text">查看店铺信息</text>
+            <rect x="250" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="310" y="310" class="text">查看店铺信息</text>
             
             <!-- 修改店铺信息 -->
-            <rect x="500" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="310" class="text">修改店铺信息</text>
+            <rect x="500" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="560" y="310" class="text">修改店铺信息</text>
             
-            <rect x="500" y="380" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="410" class="text">提交修改</text>
-            
-            <polygon points="575,460 625,510 575,560 525,510" class="decision-diamond"/>
-            <text x="575" y="510" class="text">修改成功？</text>
-            
-            <rect x="500" y="580" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="610" class="text">修改失败</text>
+            <!-- 提交修改 -->
+            <rect x="350" y="380" width="100" height="50" class="activity-rect"/>
+            <text x="400" y="410" class="text">提交修改</text>
             
             <!-- 结束节点 -->
-            <circle cx="400" y="650" r="20" class="end-circle"/>
-            <text x="400" y="654" class="text">结束</text>
+            <circle cx="400" cy="460" r="20" class="end-circle"/>
+            <text x="400" y="464" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
             <path d="M400,150 L400,180" class="arrow"/>
             <path d="M400,230 L400,260" class="arrow"/>
             
-            <path d="M400,280 L275,280" class="arrow"/>
-            <path d="M275,330 L400,330" class="arrow"/>
-            
-            <path d="M400,280 L575,280" class="arrow"/>
-            <path d="M575,330 L575,380" class="arrow"/>
-            <path d="M575,430 L575,460" class="arrow"/>
-            <path d="M575,560 L575,580" class="arrow"/>
-            <path d="M575,630 L400,630" class="arrow"/>
-            
-            <path d="M625,510 L400,510 L400,630" class="arrow"/>
+            <path d="M400,280 L310,280" class="arrow"/>
+            <path d="M400,280 L560,280" class="arrow"/>
+            <path d="M310,330 L400,330" class="arrow"/>
+            <path d="M560,330 L400,330" class="arrow"/>
+            <path d="M400,350 L400,380" class="arrow"/>
+            <path d="M400,430 L400,460" class="arrow"/>
             
             <!-- 标签 -->
-            <text x="300" y="295" class="text" font-size="12">查看</text>
-            <text x="550" y="295" class="text" font-size="12">修改</text>
-            <text x="550" y="485" class="text" font-size="12">否</text>
-            <text x="600" y="515" class="text" font-size="12">是</text>
+            <text x="360" y="295" class="text" font-size="12">查看</text>
+            <text x="460" y="295" class="text" font-size="12">修改</text>
         </svg>
         <p class="diagram-caption">图2-2 店铺信息管理活动图</p>
     </div>
@@ -222,7 +185,7 @@
     <!-- 3. 洗护订单管理活动图 -->
     <h2>3. 洗护订单管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="700" viewBox="0 0 800 700">
+        <svg width="800" height="600" viewBox="0 0 800 600">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -247,16 +210,9 @@
             <rect x="350" y="420" width="100" height="50" class="activity-rect"/>
             <text x="400" y="450" class="text">提交订单</text>
             
-            <!-- 决策节点 -->
-            <polygon points="400,500 450,550 400,600 350,550" class="decision-diamond"/>
-            <text x="400" y="550" class="text">提交成功？</text>
-            
-            <rect x="200" y="620" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="650" class="text">提交失败</text>
-            
             <!-- 结束节点 -->
-            <circle cx="400" y="680" r="20" class="end-circle"/>
-            <text x="400" y="684" class="text">结束</text>
+            <circle cx="400" cy="520" r="20" class="end-circle"/>
+            <text x="400" y="524" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
@@ -264,15 +220,7 @@
             <path d="M400,230 L400,260" class="arrow"/>
             <path d="M400,310 L400,340" class="arrow"/>
             <path d="M400,390 L400,420" class="arrow"/>
-            <path d="M400,470 L400,500" class="arrow"/>
-            
-            <path d="M350,550 L275,550 L275,620" class="arrow"/>
-            <path d="M275,670 L400,670" class="arrow"/>
-            <path d="M450,550 L400,550 L400,670" class="arrow"/>
-            
-            <!-- 标签 -->
-            <text x="300" y="565" class="text" font-size="12">否</text>
-            <text x="450" y="565" class="text" font-size="12">是</text>
+            <path d="M400,470 L400,520" class="arrow"/>
         </svg>
         <p class="diagram-caption">图2-3 洗护订单管理活动图</p>
     </div>
@@ -280,7 +228,7 @@
     <!-- 4. 订单进度管理活动图 -->
     <h2>4. 订单进度管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="800" height="500" viewBox="0 0 800 500">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -301,31 +249,16 @@
             <rect x="350" y="340" width="100" height="50" class="activity-rect"/>
             <text x="400" y="370" class="text">更新订单状态</text>
             
-            <!-- 决策节点 -->
-            <polygon points="400,420 450,470 400,520 350,470" class="decision-diamond"/>
-            <text x="400" y="470" class="text">更新成功？</text>
-            
-            <rect x="200" y="540" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="570" class="text">更新失败</text>
-            
             <!-- 结束节点 -->
-            <circle cx="400" y="600" r="20" class="end-circle"/>
-            <text x="400" y="604" class="text">结束</text>
+            <circle cx="400" cy="440" r="20" class="end-circle"/>
+            <text x="400" y="444" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
             <path d="M400,150 L400,180" class="arrow"/>
             <path d="M400,230 L400,260" class="arrow"/>
             <path d="M400,310 L400,340" class="arrow"/>
-            <path d="M400,390 L400,420" class="arrow"/>
-            
-            <path d="M350,470 L275,470 L275,540" class="arrow"/>
-            <path d="M275,590 L400,590" class="arrow"/>
-            <path d="M450,470 L400,470 L400,590" class="arrow"/>
-            
-            <!-- 标签 -->
-            <text x="300" y="485" class="text" font-size="12">否</text>
-            <text x="450" y="485" class="text" font-size="12">是</text>
+            <path d="M400,390 L400,440" class="arrow"/>
         </svg>
         <p class="diagram-caption">图2-4 订单进度管理活动图</p>
     </div>
@@ -333,7 +266,7 @@
     <!-- 5. 洗护信息管理活动图 -->
     <h2>5. 洗护信息管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="800" height="500" viewBox="0 0 800 500">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -351,45 +284,36 @@
             <text x="400" y="310" class="text">操作类型</text>
             
             <!-- 添加服务 -->
-            <rect x="200" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="310" class="text">添加服务</text>
-            
-            <rect x="200" y="380" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="410" class="text">填写服务信息</text>
+            <rect x="250" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="310" y="310" class="text">添加服务</text>
             
             <!-- 修改服务 -->
-            <rect x="500" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="310" class="text">修改服务</text>
-            
-            <rect x="500" y="380" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="410" class="text">更新服务信息</text>
+            <rect x="500" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="560" y="310" class="text">修改服务</text>
             
             <!-- 提交操作 -->
-            <rect x="350" y="480" width="100" height="50" class="activity-rect"/>
-            <text x="400" y="510" class="text">提交操作</text>
+            <rect x="350" y="380" width="100" height="50" class="activity-rect"/>
+            <text x="400" y="410" class="text">提交操作</text>
             
             <!-- 结束节点 -->
-            <circle cx="400" y="580" r="20" class="end-circle"/>
-            <text x="400" y="584" class="text">结束</text>
+            <circle cx="400" cy="460" r="20" class="end-circle"/>
+            <text x="400" y="464" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
             <path d="M400,150 L400,180" class="arrow"/>
             <path d="M400,230 L400,260" class="arrow"/>
             
-            <path d="M400,280 L275,280" class="arrow"/>
-            <path d="M275,330 L275,380" class="arrow"/>
-            <path d="M275,430 L400,430" class="arrow"/>
-            
-            <path d="M400,280 L575,280" class="arrow"/>
-            <path d="M575,330 L575,380" class="arrow"/>
-            <path d="M575,430 L400,430" class="arrow"/>
-            
-            <path d="M400,530 L400,580" class="arrow"/>
+            <path d="M400,280 L310,280" class="arrow"/>
+            <path d="M400,280 L560,280" class="arrow"/>
+            <path d="M310,330 L400,330" class="arrow"/>
+            <path d="M560,330 L400,330" class="arrow"/>
+            <path d="M400,350 L400,380" class="arrow"/>
+            <path d="M400,430 L400,460" class="arrow"/>
             
             <!-- 标签 -->
-            <text x="300" y="295" class="text" font-size="12">添加</text>
-            <text x="550" y="295" class="text" font-size="12">修改</text>
+            <text x="360" y="295" class="text" font-size="12">添加</text>
+            <text x="460" y="295" class="text" font-size="12">修改</text>
         </svg>
         <p class="diagram-caption">图2-5 洗护信息管理活动图</p>
     </div>
@@ -397,7 +321,7 @@
     <!-- 6. 评论互动管理活动图 -->
     <h2>6. 评论互动管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="800" height="500" viewBox="0 0 800 500">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -411,53 +335,53 @@
             <text x="400" y="230" class="text">用户角色</text>
             
             <!-- 顾客评论 -->
-            <rect x="200" y="200" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="230" class="text">顾客评论</text>
+            <rect x="200" y="200" width="120" height="50" class="activity-rect"/>
+            <text x="260" y="230" class="text">顾客评论</text>
             
-            <rect x="200" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="310" class="text">填写评论内容</text>
+            <rect x="200" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="260" y="310" class="text">填写评论内容</text>
             
-            <rect x="200" y="360" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="390" class="text">提交评论</text>
+            <rect x="200" y="360" width="120" height="50" class="activity-rect"/>
+            <text x="260" y="390" class="text">提交评论</text>
             
             <!-- 商家回复 -->
-            <rect x="500" y="200" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="230" class="text">商家回复</text>
+            <rect x="520" y="200" width="120" height="50" class="activity-rect"/>
+            <text x="580" y="230" class="text">商家回复</text>
             
-            <rect x="500" y="280" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="310" class="text">填写回复内容</text>
+            <rect x="520" y="280" width="120" height="50" class="activity-rect"/>
+            <text x="580" y="310" class="text">填写回复内容</text>
             
-            <rect x="500" y="360" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="390" class="text">提交回复</text>
+            <rect x="520" y="360" width="120" height="50" class="activity-rect"/>
+            <text x="580" y="390" class="text">提交回复</text>
             
             <!-- 管理员删除 -->
-            <rect x="350" y="450" width="100" height="50" class="activity-rect"/>
-            <text x="400" y="480" class="text">管理员删除</text>
+            <rect x="350" y="420" width="100" height="50" class="activity-rect"/>
+            <text x="400" y="450" class="text">管理员删除</text>
             
             <!-- 结束节点 -->
-            <circle cx="400" y="550" r="20" class="end-circle"/>
-            <text x="400" y="554" class="text">结束</text>
+            <circle cx="400" cy="480" r="20" class="end-circle"/>
+            <text x="400" y="484" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
             <path d="M400,150 L400,180" class="arrow"/>
             
-            <path d="M400,200 L275,200" class="arrow"/>
-            <path d="M275,250 L275,280" class="arrow"/>
-            <path d="M275,330 L275,360" class="arrow"/>
-            <path d="M275,410 L400,410 L400,450" class="arrow"/>
+            <path d="M400,200 L260,200" class="arrow"/>
+            <path d="M260,250 L260,280" class="arrow"/>
+            <path d="M260,330 L260,360" class="arrow"/>
+            <path d="M260,410 L400,410 L400,420" class="arrow"/>
             
-            <path d="M400,200 L575,200" class="arrow"/>
-            <path d="M575,250 L575,280" class="arrow"/>
-            <path d="M575,330 L575,360" class="arrow"/>
-            <path d="M575,410 L400,410" class="arrow"/>
+            <path d="M400,200 L580,200" class="arrow"/>
+            <path d="M580,250 L580,280" class="arrow"/>
+            <path d="M580,330 L580,360" class="arrow"/>
+            <path d="M580,410 L400,410" class="arrow"/>
             
-            <path d="M400,500 L400,550" class="arrow"/>
+            <path d="M400,470 L400,480" class="arrow"/>
             
             <!-- 标签 -->
             <text x="300" y="215" class="text" font-size="12">顾客</text>
-            <text x="550" y="215" class="text" font-size="12">商家</text>
-            <text x="300" y="465" class="text" font-size="12">管理员</text>
+            <text x="470" y="215" class="text" font-size="12">商家</text>
+            <text x="300" y="435" class="text" font-size="12">管理员</text>
         </svg>
         <p class="diagram-caption">图2-6 评论互动管理活动图</p>
     </div>
@@ -465,7 +389,7 @@
     <!-- 7. 个人中心管理活动图 -->
     <h2>7. 个人中心管理活动图</h2>
     <div class="diagram-container">
-        <svg width="800" height="600" viewBox="0 0 800 600">
+        <svg width="800" height="500" viewBox="0 0 800 500">
             <!-- 开始节点 -->
             <circle cx="400" cy="50" r="20" class="start-circle"/>
             <text x="400" y="54" class="text">开始</text>
@@ -487,19 +411,20 @@
             <text x="400" y="390" class="text">操作类型</text>
             
             <!-- 查看个人信息 -->
-            <rect x="200" y="360" width="150" height="50" class="activity-rect"/>
-            <text x="275" y="390" class="text">查看个人信息</text>
+            <rect x="250" y="360" width="120" height="50" class="activity-rect"/>
+            <text x="310" y="390" class="text">查看个人信息</text>
             
             <!-- 修改个人信息 -->
-            <rect x="500" y="360" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="390" class="text">修改个人信息</text>
+            <rect x="500" y="360" width="120" height="50" class="activity-rect"/>
+            <text x="560" y="390" class="text">修改个人信息</text>
             
-            <rect x="500" y="460" width="150" height="50" class="activity-rect"/>
-            <text x="575" y="490" class="text">提交修改</text>
+            <!-- 提交修改 -->
+            <rect x="350" y="440" width="100" height="50" class="activity-rect"/>
+            <text x="400" y="470" class="text">提交修改</text>
             
             <!-- 结束节点 -->
-            <circle cx="400" y="550" r="20" class="end-circle"/>
-            <text x="400" y="554" class="text">结束</text>
+            <circle cx="400" cy="500" r="20" class="end-circle"/>
+            <text x="400" y="504" class="text">结束</text>
             
             <!-- 箭头 -->
             <path d="M400,70 L400,100" class="arrow"/>
@@ -507,18 +432,16 @@
             <path d="M400,230 L400,260" class="arrow"/>
             <path d="M400,310 L400,340" class="arrow"/>
             
-            <path d="M400,360 L275,360" class="arrow"/>
-            <path d="M275,410 L400,410 L400,530" class="arrow"/>
-            
-            <path d="M400,360 L575,360" class="arrow"/>
-            <path d="M575,410 L575,460" class="arrow"/>
-            <path d="M575,510 L400,510 L400,530" class="arrow"/>
-            
-            <path d="M400,530 L400,550" class="arrow"/>
+            <path d="M400,360 L310,360" class="arrow"/>
+            <path d="M400,360 L560,360" class="arrow"/>
+            <path d="M310,410 L400,410" class="arrow"/>
+            <path d="M560,410 L400,410" class="arrow"/>
+            <path d="M400,410 L400,440" class="arrow"/>
+            <path d="M400,490 L400,500" class="arrow"/>
             
             <!-- 标签 -->
-            <text x="300" y="375" class="text" font-size="12">查看</text>
-            <text x="550" y="375" class="text" font-size="12">修改</text>
+            <text x="360" y="375" class="text" font-size="12">查看</text>
+            <text x="460" y="375" class="text" font-size="12">修改</text>
         </svg>
         <p class="diagram-caption">图2-7 个人中心管理活动图</p>
     </div>
